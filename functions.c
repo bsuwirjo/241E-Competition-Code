@@ -478,6 +478,40 @@ void turnLeftSeconds(float seconds, float speed=118)
 * @author Sean Kelley  sgtkode01@gmail.com
 *
 */
+
+
+void drive_forward(float secs, float speed){
+	motor[frontl] = speed;
+	motor[frontr] = speed;
+	motor[backl] = speed;
+	motor[backr] = speed;
+	wait1Msec(secs);
+
+}
+
+float increase_speed(float speed){
+	speed=speed+10;
+	return speed;
+}
+
+
+void spin_flywheel(float secs,float end_speed){
+
+	if (motor[flyr] < 118){
+		if (motor[flyr] >= 118){
+
+
+		}
+		motor[flyr] =
+
+	}
+	motor[flyr] = speed;
+	motor[flyl] = -speed;
+	wait1Msec(secs);
+
+}
+
+
 task runMotors(){
 	while(true){
 		motor[backr]  = frontLeftVal;
