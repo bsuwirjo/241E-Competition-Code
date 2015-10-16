@@ -7,8 +7,8 @@ This is the competition template for all pinkerton robotics code. You will not c
 - 241 A: N/A
 - 241 B: https://github.com/pigion138138/241B-Competition-Code
 - 241 C: https://github.com/sgtkode/241C-Competition-Code
-- 241 D: N/A
-- 241 E: N/A
+- 241 D: https://github.com/1amTim/241D-Competition-Code
+- 241 E: https://github.com/bsuwirjo/241E-Competition-Code
 - 241 F: https://github.com/Jotin2/241F-Competition-Code
 
 If you happen to make a super awesome change to your code that you think should be included in the competition template so everyone else can have it, talk to Sean <@sgtkode> about making a pull request. More info can be found here: [Github Pull Requests](https://help.github.com/articles/using-pull-requests/)
