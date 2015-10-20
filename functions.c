@@ -1,3 +1,4 @@
+//*THIS IS 241E'S Forked Version*//
 #pragma config(Sensor, in1,    gyro,           sensorGyro)
 #pragma config(Sensor, dgtl1,  encoder,        sensorQuadEncoder)
 #pragma config(Motor,  port2,           backl,         tmotorVex393_MC29, openLoop, reversed)
@@ -519,4 +520,37 @@ task runMotors(){
 		motor[frontl] = frontRightVal;
 		motor[frontr] = backRightVal;
 	}
+}
+
+
+void increase_speed(float n = 0){
+	n = n + 10;
+	wait1Msec(300);
+	increase_speed(n);
+	
+
+}
+void decrease_speed(float n = 0){
+	n = n - 10;
+	wait1Msec(300);
+	decrease_speed(n);
+	
+}
+
+void spin_flywheel(float seconds, float f){
+	if (motor[flyr] < f){
+		motor[flyr] = increase_speed();
+		if (motor[flyr] >= f){
+			motor[flyr] = 110;
+			wait1Msec(3000);
+		}
+	}
+	if (motor[flyl] > -f){
+		motor[flyl] = decrease_speed();
+		if (motor[flyl] <= -f){
+			motor[flyl] = -110;
+			wait1Msec(3000);
+		}
+	}
+	
 }
