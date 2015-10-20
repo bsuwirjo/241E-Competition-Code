@@ -80,13 +80,13 @@ task autonomous(){
 /**
  * Period of match when driver controls the bot
  */
-task usercontrol()
-{
-	//spin_flywheel(0,118,false);
-  while (true){
-    if(bVEXNETActive){
+task usercontrol(){
+	
+	//auto_spin_flywheel(118,5,true);
+	while (true){
+		if(bVEXNETActive){
 			if(vexRT[Btn8L] == 1){
-				spin_flywheel(112,false);
+				spin_flywheel(112);
 
 			}
 
@@ -99,16 +99,16 @@ task usercontrol()
 			}
 
 
-      /////////////////////////////////////////////////////////////////////////////////////////
-      //
-      //                                      Drive
-      //
-      /////////////////////////////////////////////////////////////////////////////////////////
-  		motor[backr] = vexRT[Ch2];
-  		motor[frontr] = vexRT[Ch2];
-  		motor[backl] = -vexRT[Ch3];
-  		motor[frontl] = vexRT[Ch3];
-      wait1Msec(10);
-    }
+			/////////////////////////////////////////////////////////////////////////////////////////
+			//
+			//                                      Drive
+			//
+			/////////////////////////////////////////////////////////////////////////////////////////
+			motor[backr] = vexRT[Ch2];
+			motor[frontr] = vexRT[Ch2];
+			motor[backl] = -vexRT[Ch3];
+			motor[frontl] = vexRT[Ch3];
+			wait1Msec(10);
+		}
 	}
 }

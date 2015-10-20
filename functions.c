@@ -484,7 +484,7 @@ void turnLeftSeconds(float seconds, float speed=118)
 *
 */
 
-
+// Drives the bot forward a given amount of seconds
 void drive_forward(float secs, float speed){
 	motor[frontl] = speed;
 	motor[frontr] = speed;
@@ -494,8 +494,26 @@ void drive_forward(float secs, float speed){
 
 }
 
+// Spins the flywheel by acceleration
+void spin_flywheel(float f){
+	int speed = 0;
+	motor[armt] = -100;
+	motor[armb] = 100;
+	while (speed < f){
+		motor[flyr] = speed;
+		motor[flyl] = -speed;
+		speed = speed + 10;
+		wait1Msec(300);
+		if (speed >= f){
+			motor[flyr] = f;
+			motor[flyl] = -f;
+		}
+	}
+}
 
-void spin_flywheel(float f, bool doStop){
+
+// Spins the flywheel by acceleration, a given amount of seconds
+void auto_spin_flywheel(float f, float seconds, bool doStop){
 	int speed = 0;
 	motor[armt] = -100;
 	motor[armb] = 100;
@@ -510,12 +528,12 @@ void spin_flywheel(float f, bool doStop){
 		}
 	}
 
-
-	//if (doStop){
-		//wait1Msec(seconds*1000);
-	//	motor[armt] = 0;
-	//	motor[armb] = 0;
-	//	motor[flyr] = 0;
-	//	motor[flyl] = 0;
-	//}
+	if (doStop){
+		wait1Msec(seconds*1000);
+		motor[armt] = 0;
+		motor[armb] = 0;
+		motor[flyr] = 0;
+		motor[flyl] = 0;
+	}
 }
+
