@@ -68,11 +68,11 @@ task autonomous(){
  * Period of match when driver controls the bot
  */
 task usercontrol(){
-
-
-  while (true)
-	{
-    if(bVEXNETActive){
+	
+	
+  //while (true)
+	//{
+    //if(bVEXNETActive){
 
 
       /////////////////////////////////////////////////////////////////////////////////////////
@@ -80,12 +80,12 @@ task usercontrol(){
       //                                      Drive
       //
       /////////////////////////////////////////////////////////////////////////////////////////
-  		motor[BR] = vexRT[Ch2];
-  		motor[FR] = vexRT[Ch2];
-  		motor[BL] = vexRT[Ch3];
-  		motor[FL] = vexRT[Ch3];
+  		//motor[BR] = vexRT[Ch2];
+  		//motor[FR] = vexRT[Ch2];
+  		//motor[BL] = vexRT[Ch3];
+  		//motor[FL] = vexRT[Ch3];
 
-      wait1Msec(10);
-    }
-	}
+      //wait1Msec(10);
+    //}
+	//}
 }

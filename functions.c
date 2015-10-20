@@ -533,3 +533,36 @@ void turnLeftSeconds(float seconds, float x=118)
 	wait1Msec(seconds*1000); //Wait desired amount of time
 	fullStop(); //Stop
 }
+
+
+void increase_speed(float n = 0){
+	n = n + 10;
+	wait1Msec(300);
+	increase_speed(n);
+	
+
+}
+void decrease_speed(float n = 0){
+	n = n - 10;
+	wait1Msec(300);
+	decrease_speed(n);
+	
+}
+
+void spin_flywheel(float seconds, float f){
+	if (motor[flyr] < f){
+		motor[flyr] = increase_speed();
+		if (motor[flyr] >= f){
+			motor[flyr] = 110;
+			wait1Msec(3000);
+		}
+	}
+	if (motor[flyl] > -f){
+		motor[flyl] = decrease_speed();
+		if (motor[flyl] <= -f){
+			motor[flyl] = -110;
+			wait1Msec(3000);
+		}
+	}
+	
+}
