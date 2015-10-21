@@ -65,8 +65,36 @@ void pre_auton()
 /**
  * Period of match when bot is using only code to operate.
  */
-task autonomous(){
 
+task e_stop(){
+	
+} 
+
+task drive(){
+	auto_drive_forward(100,3);
+	
+}
+
+task intake(){
+	auto_intake_balls(100,3);
+	
+}
+ 
+task flywheel(){
+	auto_spin_flywheel(118,3,true);	
+	
+}
+ 
+task autonomous(){
+	StartTask(drive);
+	StartTask(intake);
+	StartTask(flywheel);
+	while(true){
+		
+		
+		
+	}
+	
 }
 
 

@@ -485,12 +485,16 @@ void turnLeftSeconds(float seconds, float speed=118)
 */
 
 // Drives the bot forward a given amount of seconds
-void drive_forward(float secs, float speed){
+void auto_drive_forward(float speed, float secs){
 	motor[frontl] = speed;
 	motor[frontr] = speed;
-	motor[backl] = speed;
+	motor[backl] = -speed;
 	motor[backr] = speed;
-	wait1Msec(secs);
+	wait1Msec(secs*1000);
+	motor[frontl] = 0;
+	motor[frontr] = 0;
+	motor[backl] = 0;
+	motor[backr] = 0;
 
 }
 
@@ -515,8 +519,6 @@ void spin_flywheel(float f){
 // Spins the flywheel by acceleration, a given amount of seconds
 void auto_spin_flywheel(float f, float seconds, bool doStop){
 	int speed = 0;
-	motor[armt] = -100;
-	motor[armb] = 100;
 	while (speed < f){
 		motor[flyr] = speed;
 		motor[flyl] = -speed;
@@ -530,10 +532,20 @@ void auto_spin_flywheel(float f, float seconds, bool doStop){
 
 	if (doStop){
 		wait1Msec(seconds*1000);
-		motor[armt] = 0;
-		motor[armb] = 0;
 		motor[flyr] = 0;
 		motor[flyl] = 0;
 	}
 }
+
+// Turns the intake a given amount of seconds
+void auto_intake_balls(float speed, float seconds){
+	motor[armt] = speed;
+	motor[armb] = -speed;
+	wait1Msec(seconds*1000);
+	motor[armt] = 0;
+	motor[armb] = 0;
+	
+	
+}
+
 
