@@ -3,8 +3,8 @@
 #pragma config(Sensor, dgtl3,  encoderl,       sensorQuadEncoder)
 #pragma config(Motor,  port2,           frontr,        tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           backr,         tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port4,           frontl,        tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port5,           backl,         tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port4,           frontl,        tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port5,           backl,         tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           flyr,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           flyl,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           armt,          tmotorVex393_MC29, openLoop)
@@ -71,35 +71,16 @@ void pre_auton()
  * Period of match when bot is using only code to operate.
  */
 
-task e_stop(){
-	
-} 
-
-task drive(){
-	auto_drive_forward(100,3);
-	
-}
-
-task intake(){
-	auto_intake_balls(100,3);
-	
-}
- 
-task flywheel(){
-	auto_spin_flywheel(118,3,true);	
-	
-}
- 
 task autonomous(){
 	StartTask(drive);
 	StartTask(intake);
 	StartTask(flywheel);
 	while(true){
-		
-		
-		
+
+
+
 	}
-	
+
 }
 
 
@@ -114,7 +95,7 @@ task autonomous(){
  * Period of match when driver controls the bot
  */
 task usercontrol(){
-	
+
 	//auto_spin_flywheel(118,5,true);
 	while (true){
 		if(bVEXNETActive){
@@ -140,7 +121,7 @@ task usercontrol(){
 			motor[backr] = vexRT[Ch2];
 			motor[frontr] = vexRT[Ch2];
 			motor[backl] = -vexRT[Ch3];
-			motor[frontl] = vexRT[Ch3];
+			motor[frontl] = -vexRT[Ch3];
 			wait1Msec(10);
 		}
 	}

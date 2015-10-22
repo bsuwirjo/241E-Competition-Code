@@ -3,8 +3,8 @@
 #pragma config(Sensor, dgtl3,  encoderl,       sensorQuadEncoder)
 #pragma config(Motor,  port2,           frontr,        tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           backr,         tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port4,           frontl,        tmotorVex393_MC29, openLoop, reversed)
-#pragma config(Motor,  port5,           backl,         tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port4,           frontl,        tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port5,           backl,         tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           flyr,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           flyl,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           armt,          tmotorVex393_MC29, openLoop)
@@ -483,10 +483,14 @@ void turnLeftSeconds(float seconds, float speed=118)
 * @author Sean Kelley  sgtkode01@gmail.com
 *
 */
+///////////////////////////////////////////////////////////////
+
+
+
 
 // Drives the bot forward a given amount of seconds
 void auto_drive_forward(float speed, float secs){
-	motor[frontl] = speed;
+	motor[frontl] = -speed;
 	motor[frontr] = speed;
 	motor[backl] = -speed;
 	motor[backr] = speed;
@@ -529,7 +533,6 @@ void auto_spin_flywheel(float f, float seconds, bool doStop){
 			motor[flyl] = -f;
 		}
 	}
-
 	if (doStop){
 		wait1Msec(seconds*1000);
 		motor[flyr] = 0;
@@ -539,13 +542,24 @@ void auto_spin_flywheel(float f, float seconds, bool doStop){
 
 // Turns the intake a given amount of seconds
 void auto_intake_balls(float speed, float seconds){
-	motor[armt] = speed;
-	motor[armb] = -speed;
+	motor[armt] = -speed;
+	motor[armb] = speed;
 	wait1Msec(seconds*1000);
 	motor[armt] = 0;
 	motor[armb] = 0;
-	
-	
 }
 
+task drive(){
+	auto_drive_forward(100,15);
 
+}
+
+task intake(){
+	auto_intake_balls(100,15);
+
+}
+
+task flywheel(){
+	auto_spin_flywheel(118,15,true);
+
+}
