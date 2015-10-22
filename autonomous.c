@@ -16,7 +16,6 @@
 
 
 task main(){
-			motor[flyr] = 118;
-			motor[flyl] = -118;
-			wait1Msec(10000);
+			motor[backl] = 118;
+			wait1Msec(20000);
 }
