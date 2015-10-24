@@ -67,9 +67,6 @@ void pre_auton()
  */
 
 task autonomous(){
-	StartTask(drive);
-	StartTask(intake);
-	StartTask(flywheel);
 	while(true){
 
 
@@ -96,7 +93,7 @@ task usercontrol(){
 	//startTask(intake);
 	while (true){
 		if(bVEXNETActive){
-			/*  This is what we use for now
+			/*
 			if(vexRT[Btn8L] == 1){
 				spin_flywheel(112);
 

@@ -559,43 +559,47 @@ task drive(){
 
 /*
 Uses one button to toggle on/off for intake
-*/
+
 task intake(){
 	bool unpressed = false;
 
 	while(true){
-
-		if(unpressed == false){
-			if(vexRT[Btn7D] == 1){
-				motor[armt] = 100;
-				motor[armb] = 100;
-				wait1Msec(200);
-				if(vexRT[Btn7D] == 0){
-					unpressed = true;
+		if(bVEXNETActive){
+			if(unpressed == false){
+				if(vexRT[Btn7D] == 1){
+					motor[armt] = 100;
+					motor[armb] = 100;
+					wait1Msec(200);
+					if(vexRT[Btn7D] == 0){
+						unpressed = true;
+					}
 				}
+
 			}
 
-		}
+			if(unpressed == true){
+				if(vexRT[Btn7D] == 1){
+					motor[armt] = 0;
+					motor[armb] = 0;
+					wait1Msec(200);
+					if(vexRT[Btn7D] == 0){
+						unpressed = false;
 
-		if(unpressed == true){
-			if(vexRT[Btn7D] == 1){
-				motor[armt] = 0;
-				motor[armb] = 0;
-				wait1Msec(200);
-				if(vexRT[Btn7D] == 0){
-					unpressed = false;
-
+					}
 				}
+
 			}
 
-		}
+			wait1Msec(10);
 
-		wait1Msec(10);
+		}
 	}
 
 }
-
+*/
+/*
+Uses one button to toggle on/off for intake
+*/
 task flywheel(){
-
 
 }
