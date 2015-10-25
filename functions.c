@@ -557,8 +557,8 @@ task drive(){
 }
 
 
-/*
-Uses one button to toggle on/off for intake
+
+//Uses one button to toggle on/off for intake
 
 task intake(){
 	bool unpressed = false;
@@ -596,10 +596,6 @@ task intake(){
 	}
 
 }
-*/
-/*
-Uses one button to toggle on/off for intake
-*/
-task flywheel(){
 
-}
+
+//Uses one button to toggle on/off for intake
