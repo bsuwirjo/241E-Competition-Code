@@ -680,3 +680,42 @@ task flywheel(){
 	}
 
 }
+
+/*
+//Uses two different buttons to switch on/off reverse drive
+*/
+task drive(){
+
+	motor[backr] = vexRT[Ch2];
+	motor[frontr] = vexRT[Ch2];
+	motor[backl] = -vexRT[Ch3];
+	motor[frontl] = -vexRT[Ch3];
+
+	while(true){
+		if(bVEXNETActive){
+
+			if(vexRT[Btn5U] == 1){
+				//make drive reverse
+				motor[backr] = vexRT[Ch3];
+				motor[frontr] = vexRT[Ch3];
+				motor[backl] = -vexRT[Ch2];
+				motor[frontl] = -vexRT[Ch2];
+
+			}
+
+			if(vexRT[Btn6U] == 1){
+				//make drive normal again
+				motor[backr] = vexRT[Ch2];
+				motor[frontr] = vexRT[Ch2];
+				motor[backl] = -vexRT[Ch3];
+				motor[frontl] = -vexRT[Ch3];
+
+			}
+
+		}
+
+		//so this loop doesn't hog the cpu
+		wait1Msec(10);
+	}
+
+}
