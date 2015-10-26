@@ -575,7 +575,9 @@ task intake(){
 				if(vexRT[Btn7D] == 1){
 					motor[armt] = 100;
 					motor[armb] = 100;
-					wait1Msec(200);
+					while(vexRT[Btn7D] == 1){
+						wait1Msec(1);
+					}
 					if(vexRT[Btn7D] == 0){
 						unpressed = true;
 					}
@@ -588,7 +590,9 @@ task intake(){
 				if(vexRT[Btn7D] == 1){
 					motor[armt] = 0;
 					motor[armb] = 0;
-					wait1Msec(200);
+					while(vexRT[Btn7D] == 1){
+						wait1Msec(1);
+					}
 					if(vexRT[Btn7D] == 0){
 						unpressed = false;
 
@@ -642,7 +646,9 @@ task flywheel(){
 			if(unpressed == false){
 				if(vexRT[Btn8D] == 1){
 					spin_flywheel(speed_select);
-					wait1Msec(200);
+					while(vexRT[Btn8D] == 1){
+						wait1Msec(1);
+					}
 					if(vexRT[Btn8D] == 0){
 						unpressed = true;
 
@@ -656,7 +662,9 @@ task flywheel(){
 				if(vexRT[Btn8D] == 1){
 					motor[flyr] = 0;
 					motor[flyl] = 0;
-					wait1Msec(200);
+					while(vexRT[Btn8D] == 1){
+						wait1Msec(1);
+					}
 					if(vexRT[Btn8D] == 0){
 						unpressed = false;
 
