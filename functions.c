@@ -483,8 +483,10 @@ void turnLeftSeconds(float seconds, float speed=118)
 * @author Sean Kelley  sgtkode01@gmail.com
 *
 */
-///////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////
+///////MARC REARDON IS THE BOSS NOW////////
+///////////////////////////////////////////////////////////////
 
 
 
@@ -505,8 +507,6 @@ void auto_drive_forward(float speed, float secs){
 // Spins the flywheel by acceleration
 void spin_flywheel(float f){
 	int speed = 0;
-	motor[armt] = -100;
-	motor[armb] = 100;
 	while (speed < f){
 		motor[flyr] = speed;
 		motor[flyl] = -speed;
@@ -557,9 +557,9 @@ task drive(){
 }
 
 
-
+/*
 //Uses one button to toggle on/off for intake
-
+*/
 task intake(){
 	bool unpressed = false;
 
@@ -597,5 +597,61 @@ task intake(){
 
 }
 
+/*
+//Uses one button to toggle on/off for flywheel
+//Uses three buttons to change speed modes
+*/
+task flywheel(){
+	bool unpressed = false;
+	int speed_select = 118;
 
-//Uses one button to toggle on/off for intake
+	while(true){
+		if(bVEXNETActive){
+
+			while(motor[flyr] > 0 && motor[flyl] < 0){
+				motor[flyr] = speed_select;
+				motor[flyl] = -speed_select;
+				wait1Msec(1);
+			}
+
+			if(vexRT[Btn8L] == 1){
+				speed_select = 50;
+			}
+			if(vexRT[Btn8U] == 1){
+				speed_select = 75;
+			}
+			if(vexRT[Btn8R] == 1){
+				speed_select = 118;
+			}
+
+			if(unpressed == false){
+				if(vexRT[Btn8D] == 1){
+					spin_flywheel(speed_select);
+					wait1Msec(200);
+					if(vexRT[Btn8D] == 0){
+						unpressed = true;
+
+					}
+				}
+
+			}
+
+			if(unpressed == true){
+				if(vexRT[Btn8D] == 1){
+					motor[flyr] = 0;
+					motor[flyl] = 0;
+					wait1Msec(200);
+					if(vexRT[Btn8D] == 0){
+						unpressed = false;
+
+					}
+				}
+
+			}
+
+			wait1Msec(10);
+		}
+
+	}
+
+}
