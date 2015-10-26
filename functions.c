@@ -507,15 +507,18 @@ void auto_drive_forward(float speed, float secs){
 // Spins the flywheel by acceleration
 void spin_flywheel(float f){
 	int speed = 0;
-	while (speed < f){
-		motor[flyr] = speed;
-		motor[flyl] = -speed;
-		speed = speed + 10;
-		wait1Msec(300);
-		if (speed >= f){
-			motor[flyr] = f;
-			motor[flyl] = -f;
+	if (motor[flyr] = 0 && motor[flyl] = 0){
+		while (speed < f){
+			motor[flyr] = speed;
+			motor[flyl] = -speed;
+			speed = speed + 10;
+			wait1Msec(300);
+			if (speed >= f){
+				motor[flyr] = f;
+				motor[flyl] = -f;
+			}
 		}
+
 	}
 }
 
@@ -565,6 +568,9 @@ task intake(){
 
 	while(true){
 		if(bVEXNETActive){
+
+			//defaults to this
+			//if the button has been unpressed from after turning the motors off
 			if(unpressed == false){
 				if(vexRT[Btn7D] == 1){
 					motor[armt] = 100;
@@ -577,6 +583,7 @@ task intake(){
 
 			}
 
+			//if the button has been unpressed from after turning the motors on
 			if(unpressed == true){
 				if(vexRT[Btn7D] == 1){
 					motor[armt] = 0;
@@ -590,6 +597,7 @@ task intake(){
 
 			}
 
+			//so this loop doesn't hog the cpu
 			wait1Msec(10);
 
 		}
@@ -608,22 +616,29 @@ task flywheel(){
 	while(true){
 		if(bVEXNETActive){
 
+			//check to see if the user changed the speed
 			while(motor[flyr] > 0 && motor[flyl] < 0){
 				motor[flyr] = speed_select;
 				motor[flyl] = -speed_select;
+				//so this loop doesn't hog the cpu
 				wait1Msec(1);
 			}
 
+			//change speed
 			if(vexRT[Btn8L] == 1){
 				speed_select = 50;
 			}
+			//change speed
 			if(vexRT[Btn8U] == 1){
 				speed_select = 75;
 			}
+			//change speed
 			if(vexRT[Btn8R] == 1){
 				speed_select = 118;
 			}
 
+			//defaults: speed_select = 118 && unpressed = false
+			//if the button has been unpressed from after turning the motors off
 			if(unpressed == false){
 				if(vexRT[Btn8D] == 1){
 					spin_flywheel(speed_select);
@@ -636,6 +651,7 @@ task flywheel(){
 
 			}
 
+			//if the button has been unpressed from after turning the motors on
 			if(unpressed == true){
 				if(vexRT[Btn8D] == 1){
 					motor[flyr] = 0;
@@ -649,6 +665,7 @@ task flywheel(){
 
 			}
 
+			//so this loop doesn't hog the cpu
 			wait1Msec(10);
 		}
 
