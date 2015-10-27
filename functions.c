@@ -507,7 +507,7 @@ void auto_drive_forward(float speed, float secs){
 // Spins the flywheel by acceleration
 void spin_flywheel(float f){
 	int speed = 0;
-	if (motor[flyr] = 0 && motor[flyl] = 0){
+	if (motor[flyr] == 0 && motor[flyl] == 0){
 		while (speed < f){
 			motor[flyr] = speed;
 			motor[flyl] = -speed;
@@ -526,6 +526,8 @@ void spin_flywheel(float f){
 // Spins the flywheel by acceleration, a given amount of seconds
 void auto_spin_flywheel(float f, float seconds, bool doStop){
 	int speed = 0;
+	//motor[armt] = -100;
+	//motor[armb] = 100;
 	while (speed < f){
 		motor[flyr] = speed;
 		motor[flyl] = -speed;
@@ -566,8 +568,8 @@ task intake(){
 			//if the button has been unpressed from after turning the motors off
 			if(unpressed == false){
 				if(vexRT[Btn7D] == 1){
-					motor[armt] = 100;
-					motor[armb] = 100;
+					motor[armt] = -100;
+					motor[armb] = -100;
 					while(vexRT[Btn7D] == 1){
 						wait1Msec(1);
 					}
@@ -614,6 +616,7 @@ task flywheel(){
 		if(bVEXNETActive){
 
 			//check to see if the user changed the speed
+
 			while(motor[flyr] > 0 && motor[flyl] < 0){
 				motor[flyr] = speed_select;
 				motor[flyl] = -speed_select;

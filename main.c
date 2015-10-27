@@ -87,12 +87,12 @@ task autonomous(){
  * Period of match when driver controls the bot
  */
 task usercontrol(){
-	// These are what I will eventually use
+
 	//startTask(drive);
 	//startTask(flywheel);
 	//startTask(intake);
 	while (true){
-		if(bVEXNETActive){
+		//if(bVEXNETActive){
 			/*
 			if(vexRT[Btn8L] == 1){
 				spin_flywheel(112);
@@ -111,16 +111,18 @@ task usercontrol(){
 
 			/////////////////////////////////////////////////////////////////////////////////////////
 			//
-			//                                      Drive - DONT MESS WITH THIS (YET)
+			//       Drive - DONT MESS WITH THIS UNTIL TASK DRIVE IS UTILIZED
 			//
 			/////////////////////////////////////////////////////////////////////////////////////////
-
+			/*
 			motor[backr] = vexRT[Ch2];
 			motor[frontr] = vexRT[Ch2];
 			motor[backl] = -vexRT[Ch3];
 			motor[frontl] = -vexRT[Ch3];
+			*/
+
 			wait1Msec(10);
 
-		}
+		//}
 	}
 }
