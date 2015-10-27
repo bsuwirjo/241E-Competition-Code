@@ -4,7 +4,7 @@
 #pragma config(Motor,  port2,           frontr,        tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           backr,         tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           frontl,        tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port5,           backl,         tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port5,           backl,         tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           flyr,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           flyl,          tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           armt,          tmotorVex393_MC29, openLoop)
@@ -16,7 +16,6 @@
 
 
 task main(){
-			motor[flyr] = 118;
-			motor[flyl] = -118;
-			wait1Msec(10000);
+			auto_spin_flywheel(118,8,true);
+			//wait1Msec(20000);
 }

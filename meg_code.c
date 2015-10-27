@@ -13,10 +13,11 @@ void function_(float final_speed){
 		speed = speed + 10;
 		wait1Msec(300);
 
+
 	}
-		
+
 }
 
-
 /* comment in here:
-*/It makes the fly wheel, I'm guessing, move +10 after waiting 3 seconds
+It makes the fly wheel, I'm guessing, move +10 after waiting 3 seconds
+*/

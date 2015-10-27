@@ -483,8 +483,10 @@ void turnLeftSeconds(float seconds, float speed=118)
 * @author Sean Kelley  sgtkode01@gmail.com
 *
 */
-///////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////
+///////MARC REARDON IS THE BOSS NOW////////
+///////////////////////////////////////////////////////////////
 
 
 
@@ -505,17 +507,18 @@ void auto_drive_forward(float speed, float secs){
 // Spins the flywheel by acceleration
 void spin_flywheel(float f){
 	int speed = 0;
-	motor[armt] = -100;
-	motor[armb] = 100;
-	while (speed < f){
-		motor[flyr] = speed;
-		motor[flyl] = -speed;
-		speed = speed + 10;
-		wait1Msec(300);
-		if (speed >= f){
-			motor[flyr] = f;
-			motor[flyl] = -f;
+	if (motor[flyr] = 0 && motor[flyl] = 0){
+		while (speed < f){
+			motor[flyr] = speed;
+			motor[flyl] = -speed;
+			speed = speed + 10;
+			wait1Msec(300);
+			if (speed >= f){
+				motor[flyr] = f;
+				motor[flyl] = -f;
+			}
 		}
+
 	}
 }
 
@@ -550,16 +553,169 @@ void auto_intake_balls(float speed, float seconds){
 }
 
 task drive(){
-	auto_drive_forward(100,15);
+	while(true){
 
+		wait1Msec(10);
+	}
 }
 
+
+/*
+//Uses one button to toggle on/off for intake
+*/
 task intake(){
-	auto_intake_balls(100,15);
+	bool unpressed = false;
+
+	while(true){
+		if(bVEXNETActive){
+
+			//defaults to this
+			//if the button has been unpressed from after turning the motors off
+			if(unpressed == false){
+				if(vexRT[Btn7D] == 1){
+					motor[armt] = 100;
+					motor[armb] = 100;
+					while(vexRT[Btn7D] == 1){
+						wait1Msec(1);
+					}
+					if(vexRT[Btn7D] == 0){
+						unpressed = true;
+					}
+				}
+
+			}
+
+			//if the button has been unpressed from after turning the motors on
+			if(unpressed == true){
+				if(vexRT[Btn7D] == 1){
+					motor[armt] = 0;
+					motor[armb] = 0;
+					while(vexRT[Btn7D] == 1){
+						wait1Msec(1);
+					}
+					if(vexRT[Btn7D] == 0){
+						unpressed = false;
+
+					}
+				}
+
+			}
+
+			//so this loop doesn't hog the cpu
+			wait1Msec(10);
+
+		}
+	}
 
 }
 
+/*
+//Uses one button to toggle on/off for flywheel
+//Uses three buttons to change speed modes
+*/
 task flywheel(){
-	auto_spin_flywheel(118,15,true);
+	bool unpressed = false;
+	int speed_select = 118;
+
+	while(true){
+		if(bVEXNETActive){
+
+			//check to see if the user changed the speed
+			while(motor[flyr] > 0 && motor[flyl] < 0){
+				motor[flyr] = speed_select;
+				motor[flyl] = -speed_select;
+				//so this loop doesn't hog the cpu
+				wait1Msec(1);
+			}
+
+			//change speed
+			if(vexRT[Btn8L] == 1){
+				speed_select = 50;
+			}
+			//change speed
+			if(vexRT[Btn8U] == 1){
+				speed_select = 75;
+			}
+			//change speed
+			if(vexRT[Btn8R] == 1){
+				speed_select = 118;
+			}
+
+			//defaults: speed_select = 118 && unpressed = false
+			//if the button has been unpressed from after turning the motors off
+			if(unpressed == false){
+				if(vexRT[Btn8D] == 1){
+					spin_flywheel(speed_select);
+					while(vexRT[Btn8D] == 1){
+						wait1Msec(1);
+					}
+					if(vexRT[Btn8D] == 0){
+						unpressed = true;
+
+					}
+				}
+
+			}
+
+			//if the button has been unpressed from after turning the motors on
+			if(unpressed == true){
+				if(vexRT[Btn8D] == 1){
+					motor[flyr] = 0;
+					motor[flyl] = 0;
+					while(vexRT[Btn8D] == 1){
+						wait1Msec(1);
+					}
+					if(vexRT[Btn8D] == 0){
+						unpressed = false;
+
+					}
+				}
+
+			}
+
+			//so this loop doesn't hog the cpu
+			wait1Msec(10);
+		}
+
+	}
+
+}
+
+/*
+//Uses two different buttons to switch on/off reverse drive
+*/
+task drive(){
+
+	motor[backr] = vexRT[Ch2];
+	motor[frontr] = vexRT[Ch2];
+	motor[backl] = -vexRT[Ch3];
+	motor[frontl] = -vexRT[Ch3];
+
+	while(true){
+		if(bVEXNETActive){
+
+			if(vexRT[Btn5U] == 1){
+				//make drive reverse
+				motor[backr] = vexRT[Ch3];
+				motor[frontr] = vexRT[Ch3];
+				motor[backl] = -vexRT[Ch2];
+				motor[frontl] = -vexRT[Ch2];
+
+			}
+
+			if(vexRT[Btn6U] == 1){
+				//make drive normal again
+				motor[backr] = vexRT[Ch2];
+				motor[frontr] = vexRT[Ch2];
+				motor[backl] = -vexRT[Ch3];
+				motor[frontl] = -vexRT[Ch3];
+
+			}
+
+		}
+
+		//so this loop doesn't hog the cpu
+		wait1Msec(10);
+	}
 
 }
