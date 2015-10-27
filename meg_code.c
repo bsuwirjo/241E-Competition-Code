@@ -21,3 +21,12 @@ void function_(float final_speed){
 /* comment in here:
 It makes the fly wheel, I'm guessing, move +10 after waiting 3 seconds
 */
+/*
+YA!
+
+It adds +10 to the speed every .3 seconds.  (acceleration)
+While-loops will continue to execute the code within them
+until the parameters.... while(<-the stuff in here->)  ....
+are false.  until speed is equal to f, it will keep going. 
+
+*/
