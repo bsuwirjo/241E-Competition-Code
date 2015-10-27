@@ -552,13 +552,6 @@ void auto_intake_balls(float speed, float seconds){
 	motor[armb] = 0;
 }
 
-task drive(){
-	while(true){
-
-		wait1Msec(10);
-	}
-}
-
 
 /*
 //Uses one button to toggle on/off for intake
