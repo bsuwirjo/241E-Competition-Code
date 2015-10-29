@@ -774,7 +774,7 @@ task drive(){
 ////////////////////////////////////////////////////////////////////////////////
 
 task auto_intake(){
-		
+
 		auto_intake_balls(100,3);
 
 }
@@ -784,6 +784,11 @@ task auto_flywheel(){
 
 		auto_spin_flywheel(118,3,true);
 
+		//if(encoderr <= blah){
+			//change speed
+
+		//}
+
 
 }
 
@@ -791,5 +796,9 @@ task auto_drive(){
 
 		auto_drive_forward(100,3);
 
+		//while(encoderr < blah){
+
+
+		//}
 
 }
