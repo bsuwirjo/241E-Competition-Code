@@ -99,33 +99,11 @@ task usercontrol(){
 	while (true){
 		//if(bVEXNETActive){
 			/*
-			if(vexRT[Btn8L] == 1){
-				spin_flywheel(112);
-
-			}
-
-			if(vexRT[Btn8U] == 1){
-				motor[flyr] = 0;
-				motor[flyl] = 0;
-				motor[armb] = 0;
-				motor[armt] = 0;
-
-			}
-
-			*/
-
-			/////////////////////////////////////////////////////////////////////////////////////////
-			//
-			//       Drive - DONT MESS WITH THIS UNTIL TASK DRIVE IS UTILIZED
-			//
-			/////////////////////////////////////////////////////////////////////////////////////////
-			/*
 			motor[backr] = vexRT[Ch2];
 			motor[frontr] = vexRT[Ch2];
 			motor[backl] = vexRT[Ch3];
 			motor[frontl] = vexRT[Ch3];
 			*/
-
 			wait1Msec(10);
 
 		//}
