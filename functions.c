@@ -484,13 +484,22 @@ void turnLeftSeconds(float seconds, float speed=118)
 *
 */
 
-///////////////////////////////////////////////////////////////
-///////MARC REARDON IS THE BOSS NOW////////
-///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-// Drives the bot forward a given amount of seconds
+/**
+* Drives the bot forward a given amount of seconds
+*
+* @author Marc Reardon  marcdreardon@gmail.com
+*
+* @param  secs     amount of seconds to go forward
+* @param	speed    speed of motors
+*
+*/
 void auto_drive_forward(float speed, float secs){
 	motor[frontl] = -speed;
 	motor[frontr] = speed;
@@ -504,7 +513,14 @@ void auto_drive_forward(float speed, float secs){
 
 }
 
-// Spins the flywheel by acceleration
+/**
+* Spins the flywheel by acceleration
+*
+* @author Marc Reardon  marcdreardon@gmail.com
+*
+* @param  f   final speed for the motors to run at
+*
+*/
 void spin_flywheel(float f){
 	int speed = 0;
 	if (motor[flyr] == 0 && motor[flyl] == 0){
@@ -523,7 +539,16 @@ void spin_flywheel(float f){
 }
 
 
-// Spins the flywheel by acceleration, a given amount of seconds
+/**
+* Spins the flywheel by acceleration, then continues for a given amount of seconds
+*
+* @author Marc Reardon  marcdreardon@gmail.com
+*
+* @param  seconds   amount of seconds to continue at final speed
+* @param	f         final speed for the motors to run at
+* @param  doStop    if want it to stop after the given amount of seconds
+*
+*/
 void auto_spin_flywheel(float f, float seconds, bool doStop){
 	int speed = 0;
 	//motor[armt] = -100;
@@ -545,7 +570,15 @@ void auto_spin_flywheel(float f, float seconds, bool doStop){
 	}
 }
 
-// Turns the intake a given amount of seconds
+/**
+* Turns the intake a given amount of seconds
+*
+* @author Marc Reardon  marcdreardon@gmail.com
+*
+* @param  seconds   amount of seconds to spin for
+* @param	speed     speed of motors
+*
+*/
 void auto_intake_balls(float speed, float seconds){
 	motor[armt] = -speed;
 	motor[armb] = speed;
@@ -555,8 +588,18 @@ void auto_intake_balls(float speed, float seconds){
 }
 
 
-/*
-//Uses one button to toggle on/off for intake
+////////////////////////////////////////////////////////////////////////////////
+//
+//									USERCONTROL TASKS
+//
+////////////////////////////////////////////////////////////////////////////////
+
+
+/**
+* Uses one button to toggle on/off for intake
+*
+* @author Marc Reardon  marcdreardon@gmail.com
+*
 */
 task intake(){
 	bool unpressed = false;
@@ -604,9 +647,13 @@ task intake(){
 
 }
 
-/*
-//Uses one button to toggle on/off for flywheel
-//Uses three buttons to change speed modes
+
+/**
+* Uses one button to toggle on/off for flywheel
+* Uses three buttons to change speed modes
+*
+* @author Marc Reardon  marcdreardon@gmail.com
+*
 */
 task flywheel(){
 	bool unpressed = false;
@@ -677,8 +724,11 @@ task flywheel(){
 
 }
 
-/*
-//Uses two different buttons to switch on/off reverse drive
+/**
+* Uses two different buttons to switch on/off reverse drive
+*
+* @author Marc Reardon  marcdreardon@gmail.com
+*
 */
 task drive(){
 
@@ -713,5 +763,33 @@ task drive(){
 		//so this loop doesn't hog the cpu
 		wait1Msec(10);
 	}
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//									AUTONOMOUS TASKS
+//
+////////////////////////////////////////////////////////////////////////////////
+
+task auto_intake(){
+		
+		auto_intake_balls(100,3);
+
+}
+
+
+task auto_flywheel(){
+
+		auto_spin_flywheel(118,3,true);
+
+
+}
+
+task auto_drive(){
+
+		auto_drive_forward(100,3);
+
 
 }
