@@ -122,8 +122,8 @@ task usercontrol(){
 			/*
 			motor[backr] = vexRT[Ch2];
 			motor[frontr] = vexRT[Ch2];
-			motor[backl] = -vexRT[Ch3];
-			motor[frontl] = -vexRT[Ch3];
+			motor[backl] = vexRT[Ch3];
+			motor[frontl] = vexRT[Ch3];
 			*/
 
 			wait1Msec(10);

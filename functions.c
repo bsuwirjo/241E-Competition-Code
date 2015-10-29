@@ -743,37 +743,40 @@ task flywheel(){
 *
 */
 task drive(){
-	//sets drive to an initial state
-	motor[backr] = vexRT[Ch2];
-	motor[frontr] = vexRT[Ch2];
-	motor[backl] = -vexRT[Ch3];
-	motor[frontl] = -vexRT[Ch3];
+	bool initial = true;
 
 	while(true){
 		if(bVEXNETActive){
 
-			if(vexRT[Btn5U] == 1){
-				//make drive reverse
-				motor[backr] = vexRT[Ch3];
-				motor[frontr] = vexRT[Ch3];
-				motor[backl] = -vexRT[Ch2];
-				motor[frontl] = -vexRT[Ch2];
-
-			}
-
-			if(vexRT[Btn6U] == 1){
-				//make drive normal again
+			while(initial == true){
+				//sets drive to a regular state
 				motor[backr] = vexRT[Ch2];
 				motor[frontr] = vexRT[Ch2];
 				motor[backl] = -vexRT[Ch3];
 				motor[frontl] = -vexRT[Ch3];
+				if (vexRT[Btn5U] == 1){
+					initial = false;
+
+				}
 
 			}
 
-		}
+			while(initial == false){
+				//sets the drive to reverse
+				motor[backr] = -vexRT[Ch2];
+				motor[frontr] = -vexRT[Ch2];
+				motor[backl] = vexRT[Ch3];
+				motor[frontl] = vexRT[Ch3];
+				if(vexRT[Btn6U] == 1){
+					initial = true;
+				}
+
+			}
 
 		//so this loop doesn't hog the cpu
 		wait1Msec(10);
+
+		}
 	}
 
 }
@@ -785,23 +788,23 @@ task drive(){
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-//task auto_intake(){
+/*
+task auto_intake(){
 
-		//auto_intake_balls(100,3);
-
-//}
-
+}
+*/
 
 task auto_flywheel(){
 
 		auto_spin_flywheel(118,15,true);
-		auto_intake_balls(100,15);
 		//wait1Msec(15000);
 
 }
 
-//task auto_drive(){
+/*
+task auto_drive(){
 
 		//auto_drive_forward(100,3);
 
-//}
+}
+*/
