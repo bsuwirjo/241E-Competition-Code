@@ -523,11 +523,13 @@ void auto_drive_forward(float speed, float secs){
 */
 void spin_flywheel(float f){
 	int speed = 0;
+	//if the motors are not already running
 	if (motor[flyr] == 0 && motor[flyl] == 0){
+		//while the actual speed is less than the final speed
 		while (speed < f){
 			motor[flyr] = speed;
 			motor[flyl] = -speed;
-			speed = speed + 10;
+			speed = speed + 10;    //increase the motor speed
 			wait1Msec(300);
 			if (speed >= f){
 				motor[flyr] = f;
@@ -552,21 +554,30 @@ void spin_flywheel(float f){
 void auto_spin_flywheel(float f, float seconds, bool doStop){
 	int speed = 0;
 	//motor[armt] = -100;
-	//motor[armb] = 100;
+	//motor[armb] = -100;
+
+	//while the actual speed is less than the final speed
 	while (speed < f){
 		motor[flyr] = speed;
 		motor[flyl] = -speed;
-		speed = speed + 10;
+		speed = speed + 10;    //increase the motor speed
 		wait1Msec(300);
 		if (speed >= f){
 			motor[flyr] = f;
 			motor[flyl] = -f;
 		}
 	}
+
+	motor[armt] = -100;
+	motor[armb] = -100;
+
+	//if you want to stop after a given amount of time
 	if (doStop){
 		wait1Msec(seconds*1000);
 		motor[flyr] = 0;
 		motor[flyl] = 0;
+		motor[armt] = 0;
+		motor[armb] = 0;
 	}
 }
 
@@ -581,7 +592,7 @@ void auto_spin_flywheel(float f, float seconds, bool doStop){
 */
 void auto_intake_balls(float speed, float seconds){
 	motor[armt] = -speed;
-	motor[armb] = speed;
+	motor[armb] = -speed;
 	wait1Msec(seconds*1000);
 	motor[armt] = 0;
 	motor[armb] = 0;
@@ -662,14 +673,7 @@ task flywheel(){
 	while(true){
 		if(bVEXNETActive){
 
-			//check to see if the user changed the speed
 
-			while(motor[flyr] > 0 && motor[flyl] < 0){
-				motor[flyr] = speed_select;
-				motor[flyl] = -speed_select;
-				//so this loop doesn't hog the cpu
-				wait1Msec(1);
-			}
 
 			//change speed
 			if(vexRT[Btn8L] == 1){
@@ -682,6 +686,14 @@ task flywheel(){
 			//change speed
 			if(vexRT[Btn8R] == 1){
 				speed_select = 118;
+			}
+
+			//check to see if the user changed the speed
+			if(motor[flyr] > 0 && motor[flyl] < 0){
+				motor[flyr] = speed_select;
+				motor[flyl] = -speed_select;
+				//so this loop doesn't hog the cpu
+				wait1Msec(1);
 			}
 
 			//defaults: speed_select = 118 && unpressed = false
@@ -731,7 +743,7 @@ task flywheel(){
 *
 */
 task drive(){
-
+	//sets drive to an initial state
 	motor[backr] = vexRT[Ch2];
 	motor[frontr] = vexRT[Ch2];
 	motor[backl] = -vexRT[Ch3];
@@ -773,32 +785,23 @@ task drive(){
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-task auto_intake(){
+//task auto_intake(){
 
-		auto_intake_balls(100,3);
+		//auto_intake_balls(100,3);
 
-}
+//}
 
 
 task auto_flywheel(){
 
-		auto_spin_flywheel(118,3,true);
-
-		//if(encoderr <= blah){
-			//change speed
-
-		//}
-
+		auto_spin_flywheel(118,15,true);
+		auto_intake_balls(100,15);
+		//wait1Msec(15000);
 
 }
 
-task auto_drive(){
+//task auto_drive(){
 
-		auto_drive_forward(100,3);
+		//auto_drive_forward(100,3);
 
-		//while(encoderr < blah){
-
-
-		//}
-
-}
+//}

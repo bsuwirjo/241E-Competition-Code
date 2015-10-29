@@ -16,8 +16,11 @@
 
 
 task main(){
-			//auto_spin_flywheel(118,8,true);
-			motor[flyl] = -118;
-			motor[flyr] = 118;
-			wait1Msec(20000);
+
+			auto_spin_flywheel(118,20,true);
+			//motor[armb] = 100;
+			//motor[armt] = 100;
+			//wait1Msec(20000);
+
+
 }

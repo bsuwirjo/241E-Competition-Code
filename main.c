@@ -67,10 +67,15 @@ void pre_auton()
  */
 
 task autonomous(){
+
+	startTask(auto_flywheel);
+	//startTask(auto_drive);
+	//startTask(auto_intake);
+
 	while(true){
 
-
-
+		//so this loop doesn't hog the cpu
+		wait1Msec(10);
 	}
 
 }
@@ -88,9 +93,9 @@ task autonomous(){
  */
 task usercontrol(){
 
-	//startTask(drive);
-	//startTask(flywheel);
-	//startTask(intake);
+	startTask(drive);
+	startTask(flywheel);
+	startTask(intake);
 	while (true){
 		//if(bVEXNETActive){
 			/*
