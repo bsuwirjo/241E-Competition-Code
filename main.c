@@ -71,7 +71,7 @@ void pre_auton()
 
 task autonomous(){
 
-  //ya
+  //u
 	auto_spin_flywheel(118,15,true);
 	//startTask(auto_flywheel);
 	//startTask(auto_drive);
