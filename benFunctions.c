@@ -7,24 +7,24 @@
 void clawOpen()
 {
 	motor [clawMotor]=100;
-	wait1Msec (900);
+	wait1Msec (0010);
 	motor [clawMotor]=0;
 }
 void clawClose()
 {
 	motor [clawMotor]=-100;
-	wait1Msec (900);
+	wait1Msec (0010);
 	motor [clawMotor]=0;
 }
 void armUp()
 {
-	motor [armMotor]=-100;
-	wait1Msec (1690);
+	Motor [armMotor]=-100;
+	wait1Msec (0010);
 	motor [armMotor]=0;
 }
-void armDown()
+	void armDown()
 {
 	motor [armMotor]=100;
-	wait1Msec (1690);
+	wait1Msec (0010);
 	motor [armMotor]=0;
 }

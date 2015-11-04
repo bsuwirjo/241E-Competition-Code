@@ -12,22 +12,27 @@ task main()
 {
 	while (true)
 	{
-		if (vexRT [Btn8D]==1)
+		if (vexRT [Btn6U]==1)
 		{
 			clawOpen();
 		}
-		if (vexRT [Btn8R]==1)
+		if (vexRT [Btn6D]==1)
 		{
 			clawClose();
 		}
-		if (vexRT [Btn8U]==1)
+		while (vexRT [Btn5U]==1)
 		{
 			armUp();
 		}
-		if (vexRT [Btn8L]==1)
+		while (vexRT [Btn5D]==1)
 		{
 			armDown();
 		}
+
+
+
+
+
 		{
 		motor[port2] = vexRT[Ch2]/2;
 		motor[port3] = vexRT[Ch3]/2;
