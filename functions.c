@@ -679,11 +679,42 @@ task intake(){
 task flywheel(){
 	bool unpressed = false;
 	int speed_select = 118;
+	bool selpressed = false;
 
 	while(true){
 		if(bVEXNETActive){
 
+			/*///////////////////////////////////////////// THIS
+			if(motor[flyr] > 0 && motor[flyl] < 0){
 
+				while(speed_select == 118){
+					if(vexRT[Btn8R] == 1){
+						speed_select = speed_select - 10;
+					}
+					wait1Msec(5);
+				}
+
+				motor[flyr] = speed_select;
+				motor[flyl] = -speed_select;
+
+				while(speed_select < 118 && speed_select >= 0){
+					if(vexRT[Btn8R] == 1){
+						speed_select = speed_select - 10;
+					}
+					if(vexRT[Btn8L] == 1){
+						speed_select = speed_select + 10;
+					}
+					wait1Msec(5);
+				}
+
+				motor[flyr] = speed_select;
+				motor[flyl] = -speed_select;
+
+			}
+			*/
+
+
+			/*/////////////////////////////////////////// OR THIS
 			//change speed
 			if(vexRT[Btn8L] == 1){
 				speed_select = 50;
@@ -705,6 +736,8 @@ task flywheel(){
 				motor[exl] = speed_select;
 				wait1Msec(1);
 			}
+			*/
+
 
 			//defaults: speed_select = 118 && unpressed = false
 			//if the button has been unpressed from after turning the motors off
