@@ -141,7 +141,7 @@ void testMotors()
 void forwardSeconds(float seconds, int speed=MOTOR_SPEED)
 {
 	//Set all motors to target value
-	setMotors(speed);
+	setMotors(speed);-
 	wait1Msec(seconds * 1000);//Wait given amount of time
 	clearMotors();
 }
@@ -485,6 +485,14 @@ void turnLeftSeconds(float seconds, float speed=118)
 * @author Sean Kelley  sgtkode01@gmail.com
 *
 */
+task runMotors(){
+	while (true){
+		motor[frontl] = frontLeftVal;
+		motor[frontr] = frontRightVal;
+		motor[backl] = backLeftVal;
+		motor[backr] = backRightVal;
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -749,10 +757,8 @@ task flywheel(){
 					}
 					if(vexRT[Btn8D] == 0){
 						unpressed = true;
-
 					}
 				}
-
 			}
 
 			//if the button has been unpressed from after turning the motors on
@@ -767,10 +773,8 @@ task flywheel(){
 					}
 					if(vexRT[Btn8D] == 0){
 						unpressed = false;
-
 					}
 				}
-
 			}
 
 			//so this loop doesn't hog the cpu

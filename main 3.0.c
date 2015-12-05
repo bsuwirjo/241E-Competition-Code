@@ -33,6 +33,60 @@
 #pragma autonomousDuration(15)
 #pragma userControlDuration(120)
 
+//Main competition background code...do not modify!
+#include "Vex_Competition_Includes.c"
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                 Pre-Autonomous
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Period before autonomous when bot cannot move, but minimal code can run
+ */
+void pre_auton()
+{
+ bStopTasksBetweenModes = true;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                 Autonomous
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Period of match when bot is using only code to operate.
+ */
+
+task autonomous(){
+
+	startTask(runMotors);
+
+
+  //u
+	auto_spin_flywheel(118,15,true);
+	//startTask(auto_flywheel);
+	//startTask(auto_drive);
+	//startTask(auto_intake);
+
+	/*
+	while(true){
+
+		//so this loop doesn't hog the cpu
+		wait1Msec(10);
+	}
+	*/
+
+}
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //
