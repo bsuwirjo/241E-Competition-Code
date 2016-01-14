@@ -22,8 +22,9 @@ task main(){
 			//auto_spin_flywheel(118,15,true);
 			//motor[armb] = 100;
 			//motor[armt] = 100;
-			motor[backl] = 60;
 			motor[frontl] = 60;
+			motor[backl] = 60;
+
 			//motor[backr] = 60;
 			//motor[frontr] = 60;
 			wait1Msec(20000);
