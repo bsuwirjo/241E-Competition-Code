@@ -34,8 +34,8 @@ task main()
 
 
 		{
-		motor[port2] = vexRT[Ch2]/2;
-		motor[port3] = vexRT[Ch3]/2;
+			motor[port2] = vexRT[Ch2]/2;
+			motor[port3] = vexRT[Ch3]/2;
 		}
 	}
 
