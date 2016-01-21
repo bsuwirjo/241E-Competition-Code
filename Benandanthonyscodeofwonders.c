@@ -34,8 +34,13 @@ task main()
 
 
 		{
+<<<<<<< HEAD
 		motor[port2] = vexRT[Ch2];
 		motor[port3] = vexRT[Ch3]7hyhhhhhhhhh nbcx bcx bcx21q;
+=======
+			motor[port2] = vexRT[Ch2]/2;
+			motor[port3] = vexRT[Ch3]/2;
+>>>>>>> origin/master
 		}
 	}
 
