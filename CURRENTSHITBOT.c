@@ -13,40 +13,45 @@ task main()
 {
 	while (true)
 	{
-	motor[leftFront] = vexRT[Ch2];
-	motor[leftBack] = vexRT[Ch2];
-	motor[rightFront] = vexRT[Ch3];
-	motor[rightBack] = vexRT[Ch3];
-		if (vexRT [Btn6U]==1)
-		{
-		motor [leftTopFly]=120;
-		motor [leftLowFly]=120;
-		motor [rightTopFly]=-120;
-		motor [rightLowFly]=-120;
-		wait10Msec (0001);
-		motor [leftTopFly]=0;
-		}
-		if (vexRT [Btn6D]==1)
-		{
-		motor [leftTopFly]=0;
-		motor [leftLowFly]=0;
-		motor [rightTopFly]=-0;
-		motor [rightLowFly]=-0;
-		wait10Msec (0001);
-		motor [leftTopFly]=0;
-		}
+		motor[leftFront] = vexRT[Ch2];
+		motor[leftBack] = vexRT[Ch2];
+		motor[rightFront] = vexRT[Ch3];
+		motor[rightBack] = vexRT[Ch3];
+
 		if (vexRT [Btn5U]==1)
 		{
-		motor [tractor]=100;
-		wait10Msec (300);
-		motor [tractor]=0;
+			motor [tractor]=-115;
 		}
-		if (VexRT [Btn5D]==1)
+		else
 		{
-		motor [tractor]=-100;
-		wait10Msec (300);
-		motor [tractor]=0;
+			motor [tractor]=0;
 		}
+
+		if (vexRT [Btn5D]==1)
+		{
+			motor [tractor]=115;
+		}
+		else
+		{
+			motor [tractor]=0;
+		}
+
+		if (vexRT [Btn6U]==1)
+		{
+			motor [leftTopFly]=126;
+			motor [leftLowFly]=126;
+			motor [rightTopFly]=-126;
+			motor [rightLowFly]=-126;
+		}
+		else
+		{
+			motor [leftTopFly]=0;
+			motor [leftLowFly]=0;
+			motor [rightTopFly]=-0;
+			motor [rightLowFly]=-0;
+		}
+
+
 
 
 
